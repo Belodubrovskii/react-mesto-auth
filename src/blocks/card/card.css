@@ -1,0 +1,17 @@
+@import url(./__image/card__image.css);
+@import url(./__like/card__like.css);
+@import url(./__like/_active/card__like_active.css);
+@import url(./__subscription/card__subscription.css);
+@import url(./__wrapper/card__wrapper.css);
+@import url(./__recycle-bin/card__recycle-bin.css);
+@import url(./__like-wrapper/card__like-wrapper.css);
+@import url(./__number-of-likes/card__number-of-likes.css);
+
+.card {
+  display: flex;
+  flex-direction: column;
+  background: #FFFFFF;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+}

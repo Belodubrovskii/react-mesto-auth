@@ -1,0 +1,10 @@
+@media all and (max-width: 480px) {
+  .popup__close-button_up {
+    background-size: cover;
+    top: -45px;
+    left: 140px;
+    width: 35px;
+    height: 35px;
+    transform: translateX(-50%);
+  }
+}

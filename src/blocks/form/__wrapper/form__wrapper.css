@@ -1,0 +1,6 @@
+.form__wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 13px;
+  margin-bottom: 50px;
+}

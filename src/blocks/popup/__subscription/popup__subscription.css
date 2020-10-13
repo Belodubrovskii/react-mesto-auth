@@ -1,0 +1,20 @@
+.popup__subscription {
+  font-style: normal;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 29px;
+  text-align: center;
+  color: #000000;
+  max-width: 358px;
+  margin-bottom: 60px;
+  margin-top: 0;
+}
+
+@media all and (max-width: 480px) {
+  .popup__subscription {
+    margin-bottom: 50px;
+    font-size: 20px;
+    line-height: 24px;
+  }
+}
+

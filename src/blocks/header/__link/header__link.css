@@ -1,0 +1,18 @@
+.header__link {
+  font-size: 18px;
+  line-height: 22px;
+  color: #FFFFFF;
+  text-decoration: none;
+  transition: opacity 0.3s;
+}
+
+.header__link:hover {
+  opacity: 0.6;
+}
+
+
+@media all and (max-width: 930px) {
+  .header__logout-btn {
+    margin-right: 10px;
+  }
+}
