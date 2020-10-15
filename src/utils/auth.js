@@ -9,19 +9,17 @@ export const register = (password, email) => {
     },
     body: JSON.stringify({password, email})
   })
+  .then((res) => res.json())
   .then((res) => {
-    if (res.status === 201){
-      return res.json();
+    if (res.data) {
+      return res
     } else {
-      return Promise.reject(res.statusText)
+      return Promise.reject(res);
     }
-  })
-  .then((res) => {
-    return res;
   })
   .catch((err) => {
     console.log(err)
-    throw err
+    throw err;
   })
 };
 
@@ -35,17 +33,17 @@ export const authorize = (password, email) => {
     body: JSON.stringify({password, email})
   })
   .then((response => response.json()))
-  .then((data) => {
-    if (data.token){
-      localStorage.setItem('jwt', data.token);
-      return data;
+  .then((res) => {
+    if (res.token){
+      localStorage.setItem('jwt', res.token);
+      return res;
     } else {
-      throw data;
+      return Promise.reject(res);
     }
   })
   .catch(err => {
-    console.log(err);
-    throw err
+    console.log(err.message);
+    throw err;
   })
 };
 
@@ -57,6 +55,16 @@ export const isTokenValid = (token) => {
       "Authorization" : `Bearer ${token}`
     }
   })
-  .then(response => response.json())
-  .catch(err => console.log(err))
+  .then(res => res.json())
+  .then(res => {
+    if (res.data) {
+      return res.data;
+    } else {
+      return Promise.reject(res);
+    }
+  })
+  .catch(err => {
+    console.log(err.message);
+    throw err;
+  })
 }

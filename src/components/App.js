@@ -43,15 +43,13 @@ function App() {
     if (jwt) {
       isTokenValid(jwt)
       .then((res) => {
-        if (res.data) {
-          setEmail(res.data.email);
+          setEmail(res.email);
           setLoggedIn(true);
           history.push('/');
-        } else if (res.message) {
-          localStorage.removeItem('jwt');
-          setLoggedIn(false);
-          console.log(res.message);
-        }
+      })
+      .catch(() => {
+        localStorage.removeItem('jwt');
+        setLoggedIn(false);
       })
     }
   },[history])
@@ -150,11 +148,14 @@ function App() {
 
   function handleRegisterSubmit (password, email) {
     register(password, email)
-      .then(() => {
-          setMessage('Вы успешно зарегистрировались!');
-          setInfoTooltipImage(checkImage);
-          setInfoTooltipPopupOpen(true);
-          history.push('/signin');
+      .then((res) => {
+          if (res) {
+            setMessage('Вы успешно зарегистрировались!');
+            setInfoTooltipImage(checkImage);
+            setInfoTooltipPopupOpen(true);
+            history.push('/signin');
+            return;
+          }
       })
       .catch(() => {
         setMessage('Что-то пошло не так! Попробуйте ещё раз.');
@@ -169,7 +170,7 @@ function App() {
           setEmail(email);
           setLoggedIn(true);
           history.push('/');
-          return
+          return;
       })
       .catch(() => {
         setMessage('Что-то пошло не так! Попробуйте ещё раз.');
