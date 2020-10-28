@@ -38,6 +38,13 @@ function App() {
   const history = useHistory();
 
   React.useEffect(() => {
+    const jwt = localStorage.getItem('jwt');
+    if (jwt) {
+      setLoggedIn(true);
+    }
+  },[])
+
+  React.useEffect(() => {
 
     const jwt = localStorage.getItem('jwt');
     if (jwt) {
@@ -57,7 +64,10 @@ function App() {
       .catch(() => {
         localStorage.removeItem('jwt');
         setLoggedIn(false);
+        history.push('/signin');
       })
+    } else {
+      history.push('/signin');
     }
   },[history, loggedIn])
 
