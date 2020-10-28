@@ -35,7 +35,7 @@ function Register(props) {
         minLength="6"
         name="password"
         placeholder="Пароль"
-        pattern="[^\s]"
+        pattern="^\S+$"
       />
       <input className="form__button" type="submit" value="Зарегистрироваться"/>
       <div className="form__wrapper">
@@ -47,3 +47,4 @@ function Register(props) {
 }
 
 export default Register;
+
