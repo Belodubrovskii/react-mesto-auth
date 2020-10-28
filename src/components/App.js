@@ -46,22 +46,20 @@ function App() {
           setEmail(res.email);
           setLoggedIn(true);
           history.push('/');
+
+          Promise.all([api.getUserInfo(), api.getInitialCards()])
+          .then(data => {
+            setCurrentUser(data[0].data);
+            setCards(data[1]);
+          })
+          .catch(err => console.log(`Ошибка: ${err}`));
       })
       .catch(() => {
         localStorage.removeItem('jwt');
         setLoggedIn(false);
       })
     }
-  },[history])
-
-  React.useEffect(() => {
-    Promise.all([api.getUserInfo(), api.getInitialCards()])
-      .then(data => {
-        setCurrentUser(data[0]);
-        setCards(data[1]);
-      })
-      .catch(err => console.log(`Ошибка: ${err}`));
-  },[])
+  },[history, loggedIn])
 
   function handleEditAvatarClick () {
     setEditAvatarPopupOpen(true);
@@ -127,7 +125,7 @@ function App() {
 
   function handleCardLike(card) {
 
-    const isLiked = card.likes.some(i => i._id === currentUser._id);
+    const isLiked = card.likes.some(userId => userId === currentUser._id);
 
     api.changeLikeCardStatus(card._id, isLiked)
       .then((newCard) => {
@@ -186,6 +184,7 @@ function App() {
   }
 
   return (
+    // <HashRouter>
     <div className="page">
       <CurrentUserContext.Provider value={currentUser}>
         <Header email={email} loggedIn={loggedIn} onSignOut={handleSignOut}/>
@@ -245,6 +244,7 @@ function App() {
         <Footer />
       </CurrentUserContext.Provider>
     </div>
+    // </HashRouter>
   );
 }
 

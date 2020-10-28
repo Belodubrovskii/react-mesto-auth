@@ -32,6 +32,7 @@ function Register(props) {
         className="form__input"
         value={userData.password}
         type="password"
+        minLength="6"
         name="password"
         placeholder="Пароль"
       />

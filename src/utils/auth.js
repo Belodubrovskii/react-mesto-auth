@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://auth.nomoreparties.co';
+export const BASE_URL = 'https://api.belod.students.nomoreparties.co';
 
 export const register = (password, email) => {
   return fetch(`${BASE_URL}/signup`, {
@@ -52,7 +52,7 @@ export const isTokenValid = (token) => {
     method: 'GET',
     headers: {
       "Content-Type": "application/json",
-      "Authorization" : `Bearer ${token}`
+      "authorization" : `Bearer ${token}`
     }
   })
   .then(res => res.json())

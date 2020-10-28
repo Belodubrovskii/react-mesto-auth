@@ -1,6 +1,5 @@
 {
   "name": "react-mesto-auth",
-  "homepage": "https://belodubrovskii.github.io/react-mesto-auth/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -15,7 +14,7 @@
   },
   "scripts": {
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "deploy": "npm run build && scp -r ./build/* belodubrovskij@178.154.227.69:/home/belodubrovskij/news-frontend",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

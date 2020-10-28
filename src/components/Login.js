@@ -33,6 +33,7 @@ function Login(props) {
           name="password"
           className="form__input"
           type="password"
+          minLength="6"
           placeholder="Пароль"
         />
         <input className="form__button" type="submit" value="Войти"/>
